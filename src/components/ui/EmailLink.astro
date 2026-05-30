@@ -1,0 +1,11 @@
+---
+// Large display mailto link.
+interface Props {
+  email: string;
+}
+const { email } = Astro.props;
+---
+
+<a href={`mailto:${email}`} class="my-4 inline-block font-display text-[clamp(22px,3.4vw,34px)] font-extrabold tracking-[-0.02em] text-accent transition-opacity hover:opacity-80">
+  {email}
+</a>

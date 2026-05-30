@@ -1,0 +1,16 @@
+---
+// Terminal-style command prompt: user@host ~/path % command
+interface Props {
+  user?: string;
+  path?: string;
+  command: string;
+}
+const { user = 'lance@dev', path = '~/portfolio', command } = Astro.props;
+---
+
+<div class="mb-5.5 flex flex-wrap items-center gap-2.25 font-mono text-[0.813rem] tracking-[0.02em]">
+  <span class="text-t-str">{user}</span>
+  <span class="text-powder-soft">{path}</span>
+  <span class="text-accent">%</span>
+  <span class="text-ink-dim">{command}</span>
+</div>

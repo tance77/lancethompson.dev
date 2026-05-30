@@ -1,0 +1,17 @@
+---
+// Project lead column: headline blurb + the problem it solves.
+interface Props {
+  blurb: string;
+  problem: string;
+}
+const { blurb, problem } = Astro.props;
+---
+
+<div>
+  <p class="text-[clamp(18px,2vw,22px)] leading-[1.45] text-pretty">{blurb}</p>
+  <p class="mt-5 text-base text-pretty text-ink-dim">
+    <span class="font-mono text-[0.813rem] text-t-com">// the problem</span>
+    <br />
+    {problem}
+  </p>
+</div>

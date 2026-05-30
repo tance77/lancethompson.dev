@@ -1,16 +1,16 @@
 ---
-import { PORTFOLIO_DATA as data } from "../data/portfolio";
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
 
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer statusbar">
-  <div class="wrap">
-    <span class="sb sb-accent">● main</span>
-    <span class="sb">{data.domain}</span>
-    <span class="sb-grow"></span>
-    <span class="sb">UTF-8</span>
-    <span class="sb">LF</span>
-    <span class="sb">© {year} {data.name}</span>
+<footer class="border-t border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_60%,#000)] font-mono text-xs tracking-[0.04em] text-ink-faint">
+  <div class="mx-auto flex max-w-310 items-center gap-5.5 px-8 py-3">
+    <span class="inline-flex items-center text-t-str">● main</span>
+    <span class="inline-flex items-center">{data.domain}</span>
+    <span class="flex-1"></span>
+    <span class="inline-flex items-center">UTF-8</span>
+    <span class="inline-flex items-center">LF</span>
+    <span class="inline-flex items-center">© {year} {data.name}</span>
   </div>
 </footer>

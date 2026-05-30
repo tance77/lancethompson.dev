@@ -1,0 +1,19 @@
+---
+// Button-styled anchor. Stays an <a> because these navigate (jump to #anchors) —
+// role="button" would mislead AT, and <a><button> is invalid HTML.
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary';
+}
+const { href, variant = 'primary' } = Astro.props;
+
+const base = 'inline-flex items-center gap-2.5 rounded-[3px] border px-5.5 py-3.5 font-mono text-[0.813rem] tracking-[0.06em] uppercase duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5';
+const variants = {
+  primary: 'border-accent bg-accent font-semibold text-accent-ink transition-[transform,background] hover:bg-bolt-deep',
+  secondary: 'border-hairline transition-[transform,border-color] hover:border-accent',
+};
+---
+
+<a href={href} class:list={[base, variants[variant]]}>
+  <slot />
+</a>

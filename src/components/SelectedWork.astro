@@ -1,86 +1,16 @@
 ---
-import { PORTFOLIO_DATA as data } from "../data/portfolio";
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import SectionHead from './ui/SectionHead.astro';
+import ProjectCard from './ProjectCard.astro';
 ---
 
-<section class="section-pad" id="work">
+<section id="work" class="relative overflow-hidden py-27.5">
   <div class="sec-glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="reveal section-head">
-      <span class="eyebrow">Selected work</span>
-      <h2 class="section-title">Two things I built end-to-end.</h2>
-      <p class="section-sub">
-        Native desktop tools where the front-end craft and the systems work both
-        mattered.
-      </p>
-    </div>
+  <div class="relative z-1 mx-auto max-w-310 px-8">
+    <SectionHead eyebrow="Selected work" title="Two things I built end-to-end." sub="Native desktop tools where the front-end craft and the systems work both mattered." />
 
-    <div class="work-list">
-      {
-        data.projects.map((p, i) => (
-          <div class="reveal work-item" style={`transition-delay:${i * 40}ms`}>
-            <div class="work-head">
-              <span class="work-path">
-                ~/projects<span class="sep"> / </span>
-                {p.id}
-              </span>
-              <span class="work-kicker">{p.kicker}</span>
-              <h3 class="work-title">{p.title}</h3>
-            </div>
-
-            <div class="work-media app-win">
-              <div class="win-bar">
-                <span class="win-dots">
-                  <i />
-                  <i />
-                  <i />
-                </span>
-                <span class="win-name">
-                  {p.id} — {p.kicker}
-                </span>
-              </div>
-              <div class="win-screen">
-                <span class="work-shot-label">{p.shot} — drop screenshot here</span>
-              </div>
-            </div>
-
-            <div class="work-detail">
-              <div class="work-narrative">
-                <p class="work-lead">{p.blurb}</p>
-                <p class="work-problem">
-                  <span class="lbl">// the problem</span>
-                  <br />
-                  {p.problem}
-                </p>
-              </div>
-              <div class="work-aside">
-                <div class="work-aside-block">
-                  <span class="aside-lbl">what it does</span>
-                  <ul class="work-features">
-                    {p.features.map((f) => (
-                      <li>{f}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div class="work-aside-block">
-                  <span class="aside-lbl">impact</span>
-                  <div class="work-metrics">
-                    {p.metrics.map((m) => (
-                      <div class="work-metric">
-                        <span class="k">{m.k}</span>
-                        <span class="v">{m.v}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div class="work-aside-block">
-                  <span class="aside-lbl">built with</span>
-                  <div class="work-stack">{p.stack.join("  ·  ")}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))
-      }
+    <div class="flex flex-col">
+      {data.projects.map((project, i) => <ProjectCard project={project} delay={i * 40} />)}
     </div>
   </div>
 </section>

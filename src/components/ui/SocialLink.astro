@@ -1,0 +1,12 @@
+---
+// A `// label → handle` external profile link.
+interface Props {
+  label: string;
+  url: string;
+}
+const { label, url } = Astro.props;
+---
+
+<a href={`https://${url}`} target="_blank" rel="noreferrer" class="text-ink-dim transition-colors hover:text-accent">
+  <span class="text-t-com">// {label}</span> → {url}
+</a>

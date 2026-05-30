@@ -1,38 +1,29 @@
 ---
-import { PORTFOLIO_DATA as data } from "../data/portfolio";
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import Reveal from './ui/Reveal.astro';
+import WinBar from './ui/WinBar.astro';
+import Prompt from './ui/Prompt.astro';
+import SocialLink from './ui/SocialLink.astro';
+import EmailLink from './ui/EmailLink.astro';
 ---
 
-<section class="section-pad contact section--alt" id="contact">
+<section id="contact" class="relative overflow-hidden bg-bg-alt py-27.5">
   <div class="sec-glow sec-glow--accent" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="reveal term-panel">
-      <div class="win-bar">
-        <span class="win-dots"><i></i><i></i><i></i></span>
-        <span class="win-name">lance@dev: ~/contact — zsh</span>
+  <div class="relative mx-auto max-w-310 px-8">
+    <Reveal class="mx-auto max-w-185 overflow-hidden rounded-[0.625rem] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_78%,#000)] shadow-[0_40px_90px_-50px_rgba(0,0,0,0.75)]">
+      <WinBar name="lance@dev: ~/contact — zsh" />
+      <div class="px-7.5 pt-7.5 pb-8.5 font-mono text-[0.938rem] leading-[1.95]">
+        <div class="text-t-str"># let's build something precise.</div>
+        <Prompt><span>./get-in-touch.sh</span></Prompt>
+        <div class="text-ink-dim">Open to front-end & full-stack work — freelance or full-time.</div>
+        <div class="text-ink-dim">Tell me what you're making.</div>
+        <EmailLink email={data.email} />
+        <div class="mt-1.5 flex flex-wrap gap-6.5">
+          <SocialLink label="github" url={data.links.github} />
+          <SocialLink label="linkedin" url={data.links.linkedin} />
+        </div>
+        <Prompt><span class="caret" aria-hidden="true"></span></Prompt>
       </div>
-      <div class="term-screen">
-        <div class="t-comment"># let's build something precise.</div>
-        <div class="t-line">
-          <span class="term-prompt">$</span> <span>./get-in-touch.sh</span>
-        </div>
-        <div class="t-out">
-          Open to front-end &amp; full-stack work — freelance or full-time.
-        </div>
-        <div class="t-out">Tell me what you're making.</div>
-        <a class="t-email" href={"mailto:" + data.email}>{data.email}</a>
-        <div class="t-links">
-          <a href={"https://" + data.links.github} target="_blank" rel="noreferrer">
-            <span class="c">// github</span> → {data.links.github}
-          </a>
-          <a href={"https://" + data.links.linkedin} target="_blank" rel="noreferrer">
-            <span class="c">// linkedin</span> → {data.links.linkedin}
-          </a>
-        </div>
-        <div class="t-line">
-          <span class="term-prompt">$</span> <span class="caret" aria-hidden="true"
-          ></span>
-        </div>
-      </div>
-    </div>
+    </Reveal>
   </div>
 </section>

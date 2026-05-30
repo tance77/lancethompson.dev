@@ -1,50 +1,25 @@
 ---
-import { PORTFOLIO_DATA as data } from "../data/portfolio";
-
-// Turn a post title into a fake ".md" filename.
-function slug(t: string): string {
-  return t
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "")
-    .slice(0, 26)
-    .replace(/-+$/, "");
-}
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import Reveal from './ui/Reveal.astro';
+import SectionHead from './ui/SectionHead.astro';
+import FileRow from './ui/FileRow.astro';
+import PromptLink from './ui/PromptLink.astro';
+import Prompt from './ui/Prompt.astro';
 ---
 
-<section class="section-pad" id="blog">
+<section id="blog" class="relative overflow-hidden py-27.5">
   <div class="sec-glow sec-glow--left sec-glow--low" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="reveal section-head">
-      <span class="eyebrow">writing</span>
-      <h2 class="section-title">Notes from the build.</h2>
-      <p class="section-sub">
-        Occasional posts on the tools and trade-offs behind the work.
-      </p>
-    </div>
+  <div class="relative z-1 mx-auto max-w-310 px-8">
+    <SectionHead eyebrow="writing" title="Notes from the build." sub="Occasional posts on the tools and trade-offs behind the work." />
 
-    <div class="term-cmd-line">
-      <span class="term-prompt">$</span>
+    <Prompt class="mb-7 font-mono text-sm text-ink-dim">
       <span>ls ~/writing</span>
-    </div>
+    </Prompt>
 
-    <div class="reveal filelist">
-      {
-        data.posts.map((p) => (
-          <a class="file-row" href="/blog">
-            <span class="file-perm">-rw-r--r--</span>
-            <span class="file-name">{slug(p.title)}.md</span>
-            <span class="file-meta date">{p.date}</span>
-            <span class="file-meta">{p.read}</span>
-            <span class="file-arrow">→</span>
-          </a>
-        ))
-      }
-    </div>
+    <Reveal class="overflow-hidden rounded-[10px] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_70%,#000)] font-mono">
+      {data.posts.map((post) => <FileRow post={post} />)}
+    </Reveal>
 
-    <a class="filelist-all" href="/blog">
-      <span class="term-prompt">$</span> cd ~/writing
-      <span class="fa-arrow">→</span>
-    </a>
+    <PromptLink href="/blog" class="mt-5.5">cd ~/writing</PromptLink>
   </div>
 </section>

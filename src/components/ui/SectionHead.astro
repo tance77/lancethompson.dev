@@ -1,0 +1,21 @@
+---
+// Standard section heading: "// eyebrow" + big title + sub.
+import Reveal from './Reveal.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  sub?: string;
+}
+const { eyebrow, title, sub } = Astro.props;
+---
+
+<Reveal class="head-scrim relative z-1 mb-14 max-w-190">
+  <span class="inline-flex items-center gap-2 font-mono text-[0.813rem] tracking-[0.06em] text-accent lowercase">
+    <span class="font-semibold tracking-normal">//</span>{eyebrow}
+  </span>
+  <h2 class="mt-4.5 font-display text-[clamp(30px,4.4vw,54px)] leading-[1.02] font-extrabold tracking-[-0.02em] text-balance">
+    {title}
+  </h2>
+  {sub && <p class="mt-4.5 max-w-155 text-[1.063rem] text-pretty text-ink-dim">{sub}</p>}
+</Reveal>

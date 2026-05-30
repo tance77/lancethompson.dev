@@ -1,67 +1,44 @@
 ---
-import Base from "../layouts/Base.astro";
-import Footer from "../components/Footer.astro";
-import { PORTFOLIO_DATA as data } from "../data/portfolio";
-
-function slug(t: string): string {
-  return t
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "")
-    .slice(0, 26)
-    .replace(/-+$/, "");
-}
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+import FileRow from '../components/ui/FileRow.astro';
+import Prompt from '../components/ui/Prompt.astro';
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
 ---
 
 <Base title="Writing — Lance Thompson" description="Notes from the build by Lance Thompson.">
-  <nav class="nav nav--scrolled">
-    <a href="/" class="nav-brand">
-      <span class="bolt"></span>
-      <span class="nav-name">{data.name}</span>
-      <span class="tag">~/writing</span>
+  <nav class="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-hairline bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-8 py-4 backdrop-blur-[10px]">
+    <a href="/" class="flex items-center gap-3 font-display text-[1.063rem] font-extrabold tracking-[-0.01em]">
+      <span class="inline-block h-5 w-3.75 bg-accent [clip-path:polygon(58%_0,16%_54%,44%_54%,36%_100%,84%_40%,52%_40%)]"></span>
+      <span class="font-display font-extrabold">{data.name}</span>
+      <span class="ml-1 border-l border-hairline pl-3 font-mono text-[0.688rem] tracking-[0.04em] text-ink-faint max-[820px]:hidden"> ~/writing </span>
     </a>
-    <div class="nav-links">
-      <a class="nav-link" href="/"><span class="nav-slash">./</span>home</a>
-      <a class="nav-link" href="/#work"><span class="nav-slash">./</span>work</a>
-      <a class="nav-link nav-link--cta" href="/#contact"
-        ><span class="nav-slash">./</span>contact</a
-      >
+    <div class="flex items-center gap-7.5">
+      <a href="/" class="link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] text-ink-dim transition-colors hover:text-ink max-[820px]:hidden"><span class="mr-px text-t-punc">./</span>home</a>
+      <a href="/#work" class="link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] text-ink-dim transition-colors hover:text-ink max-[820px]:hidden"><span class="mr-px text-t-punc">./</span>work</a>
+      <a href="/#contact" class="link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] text-accent transition-colors hover:text-bolt-deep"><span class="mr-px text-t-punc">./</span>contact</a>
     </div>
   </nav>
 
-  <main class="blog-main section-pad">
+  <main class="relative min-h-svh overflow-hidden pt-32.5 pb-27.5">
     <div class="sec-glow sec-glow--accent" aria-hidden="true"></div>
-    <div class="wrap">
-      <span class="eyebrow">writing</span>
-      <h1 class="section-title" style="margin-bottom: 14px;">
-        Notes from the build.
-      </h1>
-      <p class="section-sub" style="margin-bottom: 40px;">
-        Posts on the tools, trade-offs, and decisions behind the work. Mostly
-        Rust, the web platform, and shipping small fast things.
-      </p>
+    <div class="relative z-1 mx-auto max-w-310 px-8">
+      <span class="inline-flex items-center gap-2 font-mono text-[0.813rem] tracking-[0.06em] text-accent lowercase">
+        <span class="font-semibold tracking-normal">//</span>writing
+      </span>
+      <h1 class="mt-4.5 mb-3.5 font-display text-[clamp(30px,4.4vw,54px)] leading-[1.02] font-extrabold tracking-[-0.02em] text-balance">Notes from the build.</h1>
+      <p class="mb-10 max-w-155 text-[1.063rem] text-pretty text-ink-dim">Posts on the tools, trade-offs, and decisions behind the work. Mostly Rust, the web platform, and shipping small fast things.</p>
 
-      <div class="term-cmd-line">
-        <span class="term-prompt">$</span>
+      <Prompt class="mb-7 font-mono text-sm text-ink-dim">
         <span>ls -la ~/writing</span>
+      </Prompt>
+
+      <div class="overflow-hidden rounded-[10px] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_70%,#000)] font-mono">
+        {data.posts.map((post) => <FileRow post={post} href="#" />)}
       </div>
 
-      <div class="filelist">
-        {
-          data.posts.map((p) => (
-            <a class="file-row" href="#">
-              <span class="file-perm">-rw-r--r--</span>
-              <span class="file-name">{slug(p.title)}.md</span>
-              <span class="file-meta date">{p.date}</span>
-              <span class="file-meta">{p.read}</span>
-              <span class="file-arrow">→</span>
-            </a>
-          ))
-        }
-      </div>
-
-      <div class="blog-empty">
-        <span class="term-prompt">#</span>
+      <div class="mt-6.5 flex items-baseline gap-2.5 font-mono text-[0.844rem] text-ink-faint">
+        <span class="text-accent">#</span>
         <span>more posts coming soon — this is where the blog will live.</span>
       </div>
     </div>

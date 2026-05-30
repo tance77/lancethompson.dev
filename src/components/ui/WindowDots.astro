@@ -1,0 +1,13 @@
+---
+// macOS-style window traffic lights. Decorative — hidden from assistive tech.
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<span class:list={['flex gap-1.5', className]} aria-hidden="true">
+  <i class="size-2.75 rounded-full bg-[#ff5f57]"></i>
+  <i class="size-2.75 rounded-full bg-[#febc2e]"></i>
+  <i class="size-2.75 rounded-full bg-[#28c840]"></i>
+</span>

@@ -1,0 +1,18 @@
+---
+// Timeline marker column: a commit dot, plus the connector line to the next entry.
+interface Props {
+  first?: boolean;
+  showLine?: boolean;
+}
+const { first = false, showLine = false } = Astro.props;
+---
+
+<div class="relative">
+  {showLine && <span class="absolute top-4 -bottom-8.5 left-1.25 w-px bg-hairline"></span>}
+  <span
+    class:list={[
+      'absolute top-1.25 left-0 size-2.75 rounded-full border-2 border-accent',
+      first ? 'bg-accent shadow-[0_0_0_4px_color-mix(in_srgb,var(--color-accent)_18%,transparent)]' : 'bg-bg',
+    ]}
+  ></span>
+</div>

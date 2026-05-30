@@ -1,0 +1,14 @@
+---
+// A tab in the code-editor panel header (capabilities.ts / about.md). JS swaps the active one.
+interface Props {
+  tab: string;
+  active?: boolean;
+}
+const { tab, active = false } = Astro.props;
+---
+
+<button
+  class="code-tab rounded-t-md border-b-2 border-transparent px-3.5 py-2 font-mono text-xs text-ink-faint transition-colors hover:text-ink-dim data-active:border-accent data-active:bg-[color-mix(in_srgb,var(--color-navy-900)_78%,#000)] data-active:text-ink"
+  data-tab={tab}
+  data-active={active ? '' : undefined}><slot /></button
+>

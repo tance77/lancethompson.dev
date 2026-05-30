@@ -1,6 +1,6 @@
 ---
-import "../styles/global.css";
-import "../styles/app.css";
+import '../styles/global.css';
+import '../styles/app.css';
 
 interface Props {
   title: string;
@@ -9,11 +9,7 @@ interface Props {
   grain?: boolean;
 }
 
-const {
-  title,
-  description = "Lance Thompson — full-stack web developer with a front-end heart.",
-  grain = false,
-} = Astro.props;
+const { title, description = 'Lance Thompson — full-stack web developer with a front-end heart.', grain = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -25,16 +21,13 @@ const {
     <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
   <body>
-    {grain && <div class="grain" aria-hidden="true"></div>}
+    {grain && <div class="grain" aria-hidden="true" />}
     <slot />
     <script>
-      import "../scripts/ui.ts";
+      import '../scripts/ui.ts';
     </script>
   </body>
 </html>
