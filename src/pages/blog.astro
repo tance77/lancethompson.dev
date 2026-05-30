@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import FileRow from '../components/ui/FileRow.astro';
 import Prompt from '../components/ui/Prompt.astro';
@@ -7,18 +8,7 @@ import { PORTFOLIO_DATA as data } from '../data/portfolio';
 ---
 
 <Base title="Writing — Lance Thompson" description="Notes from the build by Lance Thompson.">
-  <nav class="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-hairline bg-[color-mix(in_srgb,var(--color-bg)_82%,transparent)] px-8 py-4 backdrop-blur-[10px]">
-    <a href="/" class="flex items-center gap-3 font-display text-[1.063rem] font-extrabold tracking-[-0.01em]">
-      <span class="inline-block h-5 w-3.75 bg-accent [clip-path:polygon(58%_0,16%_54%,44%_54%,36%_100%,84%_40%,52%_40%)]"></span>
-      <span class="font-display font-extrabold">{data.name}</span>
-      <span class="ml-1 border-l border-hairline pl-3 font-mono text-[0.688rem] tracking-[0.04em] text-ink-faint max-[820px]:hidden"> ~/writing </span>
-    </a>
-    <div class="flex items-center gap-7.5">
-      <a href="/" class="link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] text-ink-dim transition-colors hover:text-ink max-[820px]:hidden"><span class="mr-px text-t-punc">./</span>home</a>
-      <a href="/#work" class="link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] text-ink-dim transition-colors hover:text-ink max-[820px]:hidden"><span class="mr-px text-t-punc">./</span>work</a>
-      <a href="/#contact" class="link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] text-accent transition-colors hover:text-bolt-deep"><span class="mr-px text-t-punc">./</span>contact</a>
-    </div>
-  </nav>
+  <Nav />
 
   <main class="relative min-h-svh overflow-hidden pt-32.5 pb-27.5">
     <div class="sec-glow sec-glow--accent" aria-hidden="true"></div>

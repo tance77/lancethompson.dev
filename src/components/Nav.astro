@@ -2,12 +2,11 @@
 import { PORTFOLIO_DATA as data } from '../data/portfolio';
 import NavLink from './ui/NavLink.astro';
 
-// [label, href] — contact gets the accent treatment.
+// [label, href]. Constant across pages; contact gets the accent treatment.
 const links: [string, string][] = [
-  ['work', '#work'],
-  ['experience', '#experience'],
+  ['home', '/'],
   ['blog', '/blog'],
-  ['contact', '#contact'],
+  ['contact', '/contact'],
 ];
 ---
 
