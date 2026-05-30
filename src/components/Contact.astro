@@ -5,10 +5,19 @@ import WinBar from './ui/WinBar.astro';
 import Prompt from './ui/Prompt.astro';
 import SocialLink from './ui/SocialLink.astro';
 import EmailLink from './ui/EmailLink.astro';
+
+interface Props {
+  class?: string;
+  /** Section surface color. Defaults to the alt surface used on the home page. */
+  surface?: string;
+  /** Extra modifier classes for the accent glow (e.g. `sec-glow--low`). */
+  glow?: string;
+}
+const { class: className = '', surface = 'bg-bg-alt', glow = '' } = Astro.props;
 ---
 
-<section id="contact" class="relative overflow-hidden bg-bg-alt py-27.5">
-  <div class="sec-glow sec-glow--accent" aria-hidden="true"></div>
+<section id="contact" class:list={['relative flex flex-col justify-center overflow-hidden py-27.5', surface, className]}>
+  <div class:list={['sec-glow sec-glow--accent', glow]} aria-hidden="true"></div>
   <div class="relative mx-auto max-w-310 px-8">
     <Reveal class="mx-auto max-w-185 overflow-hidden rounded-[0.625rem] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_78%,#000)] shadow-[0_40px_90px_-50px_rgba(0,0,0,0.75)]">
       <WinBar name="lance@dev: ~/contact — zsh" />

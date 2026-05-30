@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Contact — Lance Thompson" description="Get in touch with Lance Thompson.">
+  <div class="flex min-h-svh flex-col">
+    <Nav />
+    <main class="flex flex-1 flex-col pt-20">
+      <Contact class="flex-1" surface="bg-bg" glow="sec-glow--low" />
+    </main>
+    <Footer />
+  </div>
+</Base>
