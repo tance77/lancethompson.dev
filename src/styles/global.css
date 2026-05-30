@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* Tailwind theme tokens — expose palette/fonts as utilities.
+   Component styling lives in app.css (plain CSS). */
+@theme {
+  --color-bg: #071a33;
+  --color-accent: #ffc20e;
+  --color-ink: #eaf1fb;
+  --color-ink-dim: #9db4d2;
+  --color-ink-faint: #5e789e;
+
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-body: "Archivo", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}

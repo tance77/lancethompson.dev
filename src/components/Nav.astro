@@ -1,0 +1,29 @@
+---
+import { PORTFOLIO_DATA as data } from "../data/portfolio";
+
+// [label, href] — contact gets the accent treatment.
+const links: [string, string][] = [
+  ["work", "#work"],
+  ["experience", "#experience"],
+  ["blog", "/blog"],
+  ["contact", "#contact"],
+];
+---
+
+<nav class="nav" data-nav>
+  <a href="#top" class="nav-brand">
+    <span class="bolt"></span>
+    <span class="nav-name">{data.name}</span>
+    <span class="tag">~/portfolio</span>
+  </a>
+  <div class="nav-links">
+    {
+      links.map(([label, href]) => (
+        <a class={"nav-link" + (label === "contact" ? " nav-link--cta" : "")} href={href}>
+          <span class="nav-slash">./</span>
+          {label}
+        </a>
+      ))
+    }
+  </div>
+</nav>

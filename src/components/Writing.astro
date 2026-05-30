@@ -1,0 +1,50 @@
+---
+import { PORTFOLIO_DATA as data } from "../data/portfolio";
+
+// Turn a post title into a fake ".md" filename.
+function slug(t: string): string {
+  return t
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+    .slice(0, 26)
+    .replace(/-+$/, "");
+}
+---
+
+<section class="section-pad" id="blog">
+  <div class="sec-glow sec-glow--left sec-glow--low" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal section-head">
+      <span class="eyebrow">writing</span>
+      <h2 class="section-title">Notes from the build.</h2>
+      <p class="section-sub">
+        Occasional posts on the tools and trade-offs behind the work.
+      </p>
+    </div>
+
+    <div class="term-cmd-line">
+      <span class="term-prompt">$</span>
+      <span>ls ~/writing</span>
+    </div>
+
+    <div class="reveal filelist">
+      {
+        data.posts.map((p) => (
+          <a class="file-row" href="/blog">
+            <span class="file-perm">-rw-r--r--</span>
+            <span class="file-name">{slug(p.title)}.md</span>
+            <span class="file-meta date">{p.date}</span>
+            <span class="file-meta">{p.read}</span>
+            <span class="file-arrow">→</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <a class="filelist-all" href="/blog">
+      <span class="term-prompt">$</span> cd ~/writing
+      <span class="fa-arrow">→</span>
+    </a>
+  </div>
+</section>

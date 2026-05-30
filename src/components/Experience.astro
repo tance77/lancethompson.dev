@@ -1,0 +1,53 @@
+---
+import { PORTFOLIO_DATA as data } from "../data/portfolio";
+
+// Cosmetic commit hashes, one per role.
+const hashes = ["a1f9c3e", "7b2d4e8", "3c5a9f1", "e8d6b0a", "5f1c7d2"];
+---
+
+<section class="section-pad section--alt" id="experience">
+  <div class="sec-glow sec-glow--low" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal section-head">
+      <span class="eyebrow">track record</span>
+      <h2 class="section-title">Where I've been.</h2>
+      <p class="section-sub">Grew from web developer to senior engineer at MyOutDesk.</p>
+    </div>
+
+    <div class="term-cmd-line">
+      <span class="term-prompt">$</span>
+      <span>git log --author=lance --oneline</span>
+    </div>
+
+    <div class="gitlog">
+      {
+        data.experience.map((e, i) => (
+          <div
+            class={`reveal commit ${i === 0 ? "commit--head" : ""}`}
+            style={`transition-delay:${i * 60}ms`}
+          >
+            <div class="commit-graph">
+              <span class="commit-node" />
+            </div>
+            <div class="commit-content">
+              <div class="commit-line">
+                <span class="commit-hash">{hashes[i % hashes.length]}</span>
+                {i === 0 && <span class="commit-head-tag">HEAD → main</span>}
+                <span class="commit-date">{e.span}</span>
+              </div>
+              <h3 class="commit-role">
+                {e.role} <span class="commit-org">· {e.org}</span>
+              </h3>
+              <p class="commit-msg">{e.blurb}</p>
+              <div class="commit-tags">
+                {e.tags.map((t) => (
+                  <span class="gtag">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

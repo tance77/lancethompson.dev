@@ -1,0 +1,16 @@
+---
+import { PORTFOLIO_DATA as data } from "../data/portfolio";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer statusbar">
+  <div class="wrap">
+    <span class="sb sb-accent">● main</span>
+    <span class="sb">{data.domain}</span>
+    <span class="sb-grow"></span>
+    <span class="sb">UTF-8</span>
+    <span class="sb">LF</span>
+    <span class="sb">© {year} {data.name}</span>
+  </div>
+</footer>

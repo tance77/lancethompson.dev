@@ -1,0 +1,38 @@
+---
+import { PORTFOLIO_DATA as data } from "../data/portfolio";
+---
+
+<section class="section-pad contact section--alt" id="contact">
+  <div class="sec-glow sec-glow--accent" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="reveal term-panel">
+      <div class="win-bar">
+        <span class="win-dots"><i></i><i></i><i></i></span>
+        <span class="win-name">lance@dev: ~/contact — zsh</span>
+      </div>
+      <div class="term-screen">
+        <div class="t-comment"># let's build something precise.</div>
+        <div class="t-line">
+          <span class="term-prompt">$</span> <span>./get-in-touch.sh</span>
+        </div>
+        <div class="t-out">
+          Open to front-end &amp; full-stack work — freelance or full-time.
+        </div>
+        <div class="t-out">Tell me what you're making.</div>
+        <a class="t-email" href={"mailto:" + data.email}>{data.email}</a>
+        <div class="t-links">
+          <a href={"https://" + data.links.github} target="_blank" rel="noreferrer">
+            <span class="c">// github</span> → {data.links.github}
+          </a>
+          <a href={"https://" + data.links.linkedin} target="_blank" rel="noreferrer">
+            <span class="c">// linkedin</span> → {data.links.linkedin}
+          </a>
+        </div>
+        <div class="t-line">
+          <span class="term-prompt">$</span> <span class="caret" aria-hidden="true"
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

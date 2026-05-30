@@ -1,0 +1,71 @@
+---
+import Base from "../layouts/Base.astro";
+import Footer from "../components/Footer.astro";
+import { PORTFOLIO_DATA as data } from "../data/portfolio";
+
+function slug(t: string): string {
+  return t
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")
+    .slice(0, 26)
+    .replace(/-+$/, "");
+}
+---
+
+<Base title="Writing — Lance Thompson" description="Notes from the build by Lance Thompson.">
+  <nav class="nav nav--scrolled">
+    <a href="/" class="nav-brand">
+      <span class="bolt"></span>
+      <span class="nav-name">{data.name}</span>
+      <span class="tag">~/writing</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="/"><span class="nav-slash">./</span>home</a>
+      <a class="nav-link" href="/#work"><span class="nav-slash">./</span>work</a>
+      <a class="nav-link nav-link--cta" href="/#contact"
+        ><span class="nav-slash">./</span>contact</a
+      >
+    </div>
+  </nav>
+
+  <main class="blog-main section-pad">
+    <div class="sec-glow sec-glow--accent" aria-hidden="true"></div>
+    <div class="wrap">
+      <span class="eyebrow">writing</span>
+      <h1 class="section-title" style="margin-bottom: 14px;">
+        Notes from the build.
+      </h1>
+      <p class="section-sub" style="margin-bottom: 40px;">
+        Posts on the tools, trade-offs, and decisions behind the work. Mostly
+        Rust, the web platform, and shipping small fast things.
+      </p>
+
+      <div class="term-cmd-line">
+        <span class="term-prompt">$</span>
+        <span>ls -la ~/writing</span>
+      </div>
+
+      <div class="filelist">
+        {
+          data.posts.map((p) => (
+            <a class="file-row" href="#">
+              <span class="file-perm">-rw-r--r--</span>
+              <span class="file-name">{slug(p.title)}.md</span>
+              <span class="file-meta date">{p.date}</span>
+              <span class="file-meta">{p.read}</span>
+              <span class="file-arrow">→</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="blog-empty">
+        <span class="term-prompt">#</span>
+        <span>more posts coming soon — this is where the blog will live.</span>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Base>
