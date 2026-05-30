@@ -1,10 +1,6 @@
 @import 'tailwindcss';
 
-/* ============================================================
-   Design tokens → Tailwind utilities.
-   Defining --color-* / --font-* here generates bg-*, text-*,
-   border-*, font-* utilities used inline across components.
-   ============================================================ */
+
 @theme {
     /* Surfaces */
     --color-navy-900: #04101f;
@@ -77,10 +73,7 @@
     }
 }
 
-/* ============================================================
-   Custom utilities — effects not expressible with stock
-   utilities (animated underline, radial scrim behind headings).
-   ============================================================ */
+
 @utility link-underline {
     position: relative;
     &::after {

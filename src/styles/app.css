@@ -1,12 +1,3 @@
-/* ============================================================
-   Lance Thompson — Portfolio · effects only
-   Layout, color, and spacing now live as inline Tailwind utilities
-   in the components. This file keeps the few things stock utilities
-   can't express: gradient glows, film grain, the hero entrance
-   choreography, the code-editor line numbers, and the screenshot
-   placeholder stripe.
-   ============================================================ */
-
 /* ---- Film grain overlay (home only; rendered by Base) ---- */
 .grain {
     position: fixed;

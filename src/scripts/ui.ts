@@ -1,29 +1,39 @@
 function initNav() {
-  const nav = document.querySelector<HTMLElement>('[data-nav]');
-  if (!nav) return;
+  const navigation = document.querySelector<HTMLElement>('[data-nav]');
+  if (!navigation) {
+    return;
+  }
   const onScroll = () => {
     const on = window.scrollY > 40;
-    nav.classList.toggle('nav--scrolled', on);
-    if (on) nav.setAttribute('data-scrolled', '');
-    else nav.removeAttribute('data-scrolled');
+    navigation.classList.toggle('nav--scrolled', on);
+    if (on) {
+      navigation.setAttribute('data-scrolled', '');
+    } else {
+      navigation.removeAttribute('data-scrolled');
+    }
   };
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 function initMobileNav() {
-  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const navigation = document.querySelector<HTMLElement>('[data-nav]');
   const toggle = document.querySelector<HTMLElement>('[data-nav-toggle]');
   const menu = document.querySelector<HTMLElement>('[data-nav-menu]');
-  if (!nav || !toggle || !menu) return;
+  if (!navigation || !toggle || !menu) {
+    return;
+  }
 
   const set = (open: boolean) => {
-    if (open) nav.setAttribute('data-open', '');
-    else nav.removeAttribute('data-open');
+    if (open) {
+      navigation.setAttribute('data-open', '');
+    } else {
+      navigation.removeAttribute('data-open');
+    }
     toggle.setAttribute('aria-expanded', String(open));
   };
 
-  toggle.addEventListener('click', () => set(!nav.hasAttribute('data-open')));
+  toggle.addEventListener('click', () => set(!navigation.hasAttribute('data-open')));
   // Close after picking a link, or when the viewport grows back to desktop.
   menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
   window.addEventListener('resize', () => {
@@ -31,57 +41,61 @@ function initMobileNav() {
   });
 }
 
-function reveal(el: Element) {
-  el.classList.add('in');
-  el.setAttribute('data-revealed', '');
+function reveal(element: Element) {
+  element.classList.add('in');
+  element.setAttribute('data-revealed', '');
 }
 
 function initReveal() {
-  const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal, [data-reveal]'));
+  const elements = Array.from(document.querySelectorAll<HTMLElement>('.reveal, [data-reveal]'));
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduce) {
-    els.forEach(reveal);
+    elements.forEach(reveal);
     return;
   }
-  const io = new IntersectionObserver(
+  const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          reveal(e.target);
-          io.unobserve(e.target);
+      entries.forEach((element) => {
+        if (element.isIntersecting) {
+          reveal(element.target);
+          observer.unobserve(element.target);
         }
       });
     },
     { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
   );
-  els.forEach((el) => {
-    io.observe(el);
+  elements.forEach((element) => {
+    observer.observe(element);
     // Safety net: reveal even if the observer never fires.
-    window.setTimeout(() => reveal(el), 1600);
+    window.setTimeout(() => reveal(element), 1600);
   });
 }
 
 function initHero() {
   const hero = document.querySelector<HTMLElement>('.hero');
-  if (!hero) return;
-  const io = new IntersectionObserver(
+  if (!hero) {
+    return;
+  }
+  const observer = new IntersectionObserver(
     ([e]) => {
       if (e.isIntersecting) {
         hero.classList.add('hero--in');
-        io.disconnect();
+        observer.disconnect();
       }
     },
     { threshold: 0.05 }
   );
-  io.observe(hero);
+  observer.observe(hero);
 }
 
 function initCodeTabs() {
   const panel = document.querySelector<HTMLElement>('[data-code-panel]');
-  if (!panel) return;
+  if (!panel) {
+    return;
+  }
   const tabs = panel.querySelectorAll<HTMLButtonElement>('[data-tab]');
   const views = panel.querySelectorAll<HTMLElement>('[data-view]');
-  const lang = panel.querySelector<HTMLElement>('[data-status-lang]');
+  const language = panel.querySelector<HTMLElement>('[data-status-lang]');
   const pos = panel.querySelector<HTMLElement>('[data-status-pos]');
   const META: Record<string, { lang: string; pos: string }> = {
     caps: { lang: 'TypeScript', pos: 'Ln 9, Col 1' },
@@ -89,20 +103,24 @@ function initCodeTabs() {
   };
 
   const select = (name: string) => {
-    tabs.forEach((t) => {
-      const active = t.dataset.tab === name;
-      t.classList.toggle('active', active);
-      if (active) t.setAttribute('data-active', '');
-      else t.removeAttribute('data-active');
+    tabs.forEach((tab) => {
+      const active = tab.dataset.tab === name;
+      tab.classList.toggle('active', active);
+      if (active) tab.setAttribute('data-active', '');
+      else tab.removeAttribute('data-active');
     });
-    views.forEach((v) => {
-      v.hidden = v.dataset.view !== name;
+    views.forEach((view) => {
+      view.hidden = view.dataset.view !== name;
     });
-    if (lang) lang.textContent = '● ' + META[name].lang;
-    if (pos) pos.textContent = META[name].pos;
+    if (language) {
+      language.textContent = '● ' + META[name].lang;
+    }
+    if (pos) {
+      pos.textContent = META[name].pos;
+    }
   };
 
-  tabs.forEach((t) => t.addEventListener('click', () => select(t.dataset.tab as string)));
+  tabs.forEach((tab) => tab.addEventListener('click', () => select(tab.dataset.tab as string)));
 }
 
 initNav();
