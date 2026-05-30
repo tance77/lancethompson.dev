@@ -77,7 +77,7 @@ export const PORTFOLIO_DATA: Portfolio = {
     },
     {
       group: 'Desktop',
-      items: ['Rust', 'Tauri', 'Electon'],
+      items: ['Rust', 'Tauri', 'Electron'],
     },
   ],
 
@@ -87,11 +87,11 @@ export const PORTFOLIO_DATA: Portfolio = {
       kicker: 'Desktop · Salesforce data loader',
       title: 'SOQL Studio',
       shot: 'soql-studio.png',
-      blurb: 'A cross-platform Salesforce Data Loader — bulk CSV uploads, an object browser, and auto column mapping that persists across sessions, with zero JVM to install.',
-      problem: "Salesforce's official Data Loader needs Java and only runs comfortably on Windows. Admins on macOS and Linux were stuck wrestling the JVM just to push a CSV — and remapping columns every single run.",
-      features: ['Bulk CSV import/export — no JVM required', 'Auto column mapping that persists across sessions', 'Object browser with quick access to field formulas', 'Remembered logins, one-click sandbox or production'],
+      blurb: 'A cross-platform Salesforce Data Loader with bulk CSV uploads, an object browser, and auto column mapping that persists across sessions, all with zero Java to install.',
+      problem: "Salesforce's official Data Loader needs Java and only runs comfortably on Windows. Admins on macOS and Linux were stuck wrestling the JVM just to push a CSV, and remapping columns every single run.",
+      features: ['Bulk CSV import/export, no Java required', 'Auto column mapping that persists across sessions', 'Object browser with quick access to field formulas', 'Remembered logins, one-click sandbox or production'],
       metrics: [
-        { key: '0', value: 'JVM required' },
+        { key: '0', value: 'Java required' },
         { key: '~12MB', value: 'install size' },
         { key: '3', value: 'platforms' },
       ],
@@ -102,9 +102,9 @@ export const PORTFOLIO_DATA: Portfolio = {
       kicker: 'Desktop · Productivity tracking',
       title: 'Productivity Tracker',
       shot: 'productivity-tracker.png',
-      blurb: 'A non-intrusive productivity tracker — surfaces focus and activity trends without screenshots or invasive monitoring. Rebuilt from Electron to Tauri for a lighter, native footprint.',
-      problem: 'Most time-tracking tools are surveillance ware — screenshots, invasive monitoring, constant nagging. People wanted insight into their own work patterns without feeling watched.',
-      features: ['Activity trends without screenshots or invasive monitoring', 'Private by default — data stays on the device', 'Quiet background tracking, no nagging popups', '90% smaller install after the Tauri port'],
+      blurb: 'A non-intrusive productivity tracker that surfaces focus and activity trends without screenshots or invasive monitoring. Rebuilt from Electron to Tauri for a lighter, native footprint.',
+      problem: 'Most time-tracking tools are surveillance ware, all screenshots, invasive monitoring, and constant nagging. People wanted insight into their own work patterns without feeling watched.',
+      features: ['Activity trends without screenshots or invasive monitoring', 'Private by default, data stays on the device', 'Quiet background tracking, no nagging popups', '90% smaller install after the Tauri port'],
       metrics: [
         { key: '-90%', value: 'install size' },
         { key: 'Electron', value: '→ Tauri' },
@@ -116,24 +116,24 @@ export const PORTFOLIO_DATA: Portfolio = {
 
   experience: [
     {
-      span: 'Feb 2025 — now',
+      span: 'Feb 2025 to now',
       role: 'Senior Software Engineer',
       org: 'MyOutDesk',
-      blurb: 'Lead front-end architecture and ship tooling end-to-end — Vue.js apps backed by PHP services on AWS, plus native desktop tools in Rust + Tauri.',
+      blurb: 'Lead front-end architecture and ship tooling end-to-end, Vue.js apps backed by PHP services on AWS, plus native desktop tools in Rust + Tauri.',
       tags: ['Vue.js', 'PHP', 'AWS', 'Rust', 'Tauri'],
     },
     {
-      span: 'Aug 2018 — Feb 2025',
+      span: 'Aug 2018 to Feb 2025',
       role: 'Junior Software Engineer',
       org: 'MyOutDesk',
-      blurb: 'Grew from the front end into the full stack — building features across Vue.js, PHP services, and AWS infrastructure.',
+      blurb: 'Grew from the front end into the full stack, building features across Vue.js, PHP services, and AWS infrastructure.',
       tags: ['Vue.js', 'PHP', 'AWS', 'TypeScript'],
     },
     {
-      span: 'Feb 2016 — Aug 2018',
+      span: 'Feb 2016 to Aug 2018',
       role: 'Software Engineer Intern',
       org: 'MyOutDesk',
-      blurb: 'Started as an intern — turning designs into fast, accessible interfaces and learning the stack behind them.',
+      blurb: 'Started as an intern, turning designs into fast, accessible interfaces and learning the stack behind them.',
       tags: ['HTML', 'CSS', 'JavaScript'],
     },
   ],
