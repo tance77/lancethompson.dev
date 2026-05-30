@@ -1,0 +1,18 @@
+---
+// Decorative blurred radial-gradient glow behind the hero. Hidden from assistive tech.
+interface Props {
+  variant?: 'powder' | 'accent';
+}
+const { variant = 'powder' } = Astro.props;
+
+const base = 'pointer-events-none absolute z-0 size-[820px] rounded-full blur-[80px]';
+
+const variants = {
+  powder:
+    'top-[-280px] left-[-220px] bg-[radial-gradient(50%_50%_at_50%_50%,color-mix(in_srgb,var(--color-powder)_15%,transparent),transparent_70%)]',
+  accent:
+    'right-[-200px] bottom-[-340px] bg-[radial-gradient(50%_50%_at_50%_50%,color-mix(in_srgb,var(--color-accent)_9%,transparent),transparent_70%)]',
+} as const;
+---
+
+<div class:list={[base, variants[variant]]} aria-hidden="true"></div>

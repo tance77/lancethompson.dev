@@ -1,0 +1,14 @@
+---
+// One nav link. `contact` gets the accent CTA treatment; others hide on narrow screens.
+interface Props {
+  label: string;
+  href: string;
+}
+const { label, href } = Astro.props;
+const cta = label === 'contact';
+---
+
+<a href={href} class:list={['link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] transition-colors max-[820px]:w-full max-[820px]:py-3', cta ? 'text-accent hover:text-bolt-deep' : 'text-ink-dim hover:text-ink']}>
+  <span class="mr-px text-t-punc">./</span>
+  {label}
+</a>

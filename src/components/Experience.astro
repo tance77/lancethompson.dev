@@ -1,0 +1,25 @@
+---
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import SectionHead from './ui/SectionHead.astro';
+import CommitEntry from './CommitEntry.astro';
+import Prompt from './ui/Prompt.astro';
+
+// Cosmetic commit hashes, one per role.
+const hashes = ['a1f9c3e', '7b2d4e8', '3c5a9f1', 'e8d6b0a', '5f1c7d2'];
+const last = data.experience.length - 1;
+---
+
+<section id="experience" class="relative overflow-hidden bg-bg-alt py-27.5">
+  <div class="sec-glow sec-glow--low" aria-hidden="true"></div>
+  <div class="relative z-1 mx-auto max-w-310 px-8">
+    <SectionHead eyebrow="track record" title="Where I've been." sub="Grew from web developer to senior engineer at MyOutDesk." />
+
+    <Prompt class="mb-7 font-mono text-sm text-ink-dim">
+      <span>git log --author=lance --oneline</span>
+    </Prompt>
+
+    <div class="mt-1">
+      {data.experience.map((experience, i) => <CommitEntry experience={experience} hash={hashes[i % hashes.length]} first={i === 0} showLine={i !== last} delay={i * 60} />)}
+    </div>
+  </div>
+</section>

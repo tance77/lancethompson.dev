@@ -1,0 +1,21 @@
+---
+// One skill-group row in the capabilities.ts panel — e.g. `frontend: ["React", "Vue"],`.
+import CodeLine from './CodeLine.astro';
+
+interface Props {
+  label: string;
+  items: string[];
+}
+const { label, items } = Astro.props;
+---
+
+<CodeLine indent>
+  <span class="text-t-prop">{label}</span><span class="text-t-punc">: [</span>{
+    items.map((it, i) => (
+      <>
+        <span class="text-t-str">"{it}"</span>
+        {i < items.length - 1 && <span class="text-t-punc">, </span>}
+      </>
+    ))
+  }<span class="text-t-punc">],</span>
+</CodeLine>

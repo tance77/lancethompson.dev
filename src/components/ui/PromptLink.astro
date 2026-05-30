@@ -1,0 +1,17 @@
+---
+// Terminal-prompt styled link: `$ <command> →`. Stays an <a> — it navigates.
+interface Props {
+  href: string;
+  class?: string;
+}
+const { href, class: className = '' } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={['group inline-flex items-center gap-2.5 font-mono text-sm text-ink-dim transition-colors hover:text-accent', className]}
+>
+  <span class="text-accent">$</span>
+  <slot />
+  <span class="text-accent transition-transform group-hover:translate-x-1">→</span>
+</a>

@@ -1,0 +1,110 @@
+---
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import CodeLine from './ui/CodeLine.astro';
+import SkillLine from './ui/SkillLine.astro';
+import CodeTab from './ui/CodeTab.astro';
+import ButtonLink from './ui/ButtonLink.astro';
+import MetaItem from './ui/MetaItem.astro';
+import WindowDots from './ui/WindowDots.astro';
+import HeroGlow from './ui/HeroGlow.astro';
+import TerminalPrompt from './ui/TerminalPrompt.astro';
+
+const by: Record<string, string[]> = {};
+data.skills.forEach((skill) => {
+  by[skill.group] = skill.items;
+});
+
+// Skill rows rendered into capabilities.ts (label, JSON key, items).
+const caps: [string, string, string[]][] = [
+  ['frontend', 'Front-end', by['Front-end'] ?? []],
+  ['backend ', 'Back-end', by['Back-end'] ?? []],
+  ['frameworks', 'Frameworks', by['Frameworks'] ?? []],
+  ['cloud   ', 'Cloud & DevOps', by['Cloud & DevOps'] ?? []],
+  ['desktop ', 'Desktop', by['Desktop'] ?? []],
+];
+---
+
+<section class="hero relative flex min-h-svh items-center overflow-hidden pt-30 pb-20" id="top">
+  <!--Top left color swatch-->
+  <HeroGlow />
+  <!--Bottom right color swatch-->
+  <HeroGlow variant="accent" />
+
+  <div class="relative mx-auto grid w-full max-w-310 grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] items-center gap-11 px-8 max-[900px]:grid-cols-1 max-[900px]:gap-9">
+    <div class="relative z-1">
+      <TerminalPrompt command="whoami" />
+
+      <h1 class="m-0 font-display text-[clamp(46px,8vw,104px)] leading-[0.92] font-extrabold tracking-[-0.035em]">
+        <span class="line block overflow-hidden"><span class="block">Lance</span></span>
+        <span class="line block overflow-hidden"><span class="block">Thompson<span class="text-accent">.</span></span></span>
+      </h1>
+
+      <p class="hero-sub mt-7 mb-2 max-w-115 text-[1.188rem] text-pretty text-ink-dim">
+        {data.tagline}<span class="ml-1 inline-block h-[1.05em] w-2.5 animate-blink bg-accent align-[-0.125rem]" aria-hidden="true"></span>
+      </p>
+
+      <div class="hero-cta mt-7.5 flex flex-wrap gap-3.5">
+        <ButtonLink href="#work">view_work() <span>→</span></ButtonLink>
+        <ButtonLink href="#contact" variant="secondary">contact()</ButtonLink>
+      </div>
+
+      <div class="hero-meta mt-10.5 flex flex-wrap gap-8.5 border-t border-hairline pt-6 font-mono text-[0.813rem] text-ink-dim">
+        <MetaItem label="location">{data.location}</MetaItem>
+        <MetaItem label="email">{data.email}</MetaItem>
+        <MetaItem label="github">{data.links.github}</MetaItem>
+      </div>
+    </div>
+
+    <!-- Code-editor panel: capabilities.ts <-> about.md -->
+    <div class="code-panel self-center overflow-hidden rounded-[0.625rem] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_78%,#000)] font-mono shadow-[0_30px_80px_-40px_rgba(0,0,0,0.7)] max-[900px]:self-stretch" data-code-panel>
+      <div class="flex h-10.5 items-center gap-0.5 border-b border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_60%,#000)] px-3">
+        <WindowDots class="mr-3.5" />
+        <CodeTab tab="caps" active>capabilities.ts</CodeTab>
+        <CodeTab tab="about">about.md</CodeTab>
+        <span class="flex-1"></span>
+        <span class="inline-block h-4 w-3 bg-accent opacity-85 [clip-path:polygon(58%_0,16%_54%,44%_54%,36%_100%,84%_40%,52%_40%)]"></span>
+      </div>
+
+      <div class="overflow-x-auto py-4.5 pr-4.5 pl-0 text-[0.813rem] leading-[1.85] [counter-reset:ln]" data-view="caps">
+        <CodeLine><span class="text-t-com">// what I build with</span></CodeLine>
+        <CodeLine>
+          <span class="text-t-key">const</span>
+          <span class="text-t-var">lance</span><span class="text-t-punc">: </span><span class="text-t-type">Developer</span>
+          <span class="text-t-punc">= &#123;</span>
+        </CodeLine>
+        <CodeLine indent>
+          <span class="text-t-prop">role</span><span class="text-t-punc">: </span><span class="text-t-str">"Full-Stack Web Developer"</span><span class="text-t-punc">,</span>
+        </CodeLine>
+        <CodeLine indent>
+          <span class="text-t-prop">focus</span><span class="text-t-punc">: </span><span class="text-t-str">"front-end"</span><span class="text-t-punc">,</span>
+          <span class="text-t-com">// primary</span>
+        </CodeLine>
+        {caps.map(([label, , items]) => <SkillLine label={label} items={items} />)}
+        <CodeLine><span class="text-t-punc">&#125;</span></CodeLine>
+      </div>
+
+      <div class="overflow-x-auto py-4.5 pr-4.5 pl-0 text-[0.813rem] leading-[1.85] [counter-reset:ln]" data-view="about" hidden>
+        <CodeLine><span class="text-t-com">&lt;!-- about.md --&gt;</span></CodeLine>
+        <CodeLine>
+          <span class="text-accent"># </span><span class="font-bold text-t-type">Lance Thompson</span>
+        </CodeLine>
+        <CodeLine>&nbsp;</CodeLine>
+        <CodeLine><span class="text-ink-dim">Full-stack web developer with a front-end heart.</span></CodeLine>
+        <CodeLine><span class="text-ink-dim">I build fast, precise interfaces — and own the</span></CodeLine>
+        <CodeLine><span class="text-ink-dim">stack behind them: PHP services, AWS infra, and</span></CodeLine>
+        <CodeLine><span class="text-ink-dim">native desktop apps in Rust + Tauri.</span></CodeLine>
+        <CodeLine>&nbsp;</CodeLine>
+        <CodeLine><span class="text-accent">- </span><span class="text-ink-dim">10+ years shipping for the web</span></CodeLine>
+        <CodeLine><span class="text-accent">- </span><span class="text-ink-dim">the bridge between design &amp; engineering</span></CodeLine>
+        <CodeLine><span class="text-accent">- </span><span class="text-ink-dim">products, not just mockups</span></CodeLine>
+      </div>
+
+      <div class="flex items-center gap-4.5 border-t border-hairline px-4 py-2 text-[0.688rem] tracking-[0.04em] text-ink-faint">
+        <span class="text-t-str" data-status-lang>● TypeScript</span>
+        <span>UTF-8</span>
+        <span>spaces: 2</span>
+        <span class="ml-auto" data-status-pos>Ln 9, Col 1</span>
+      </div>
+    </div>
+  </div>
+</section>

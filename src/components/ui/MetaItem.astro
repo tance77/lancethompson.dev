@@ -1,0 +1,11 @@
+---
+// A labelled hero-meta field: a `// label` comment over its value.
+interface Props {
+  label: string;
+}
+const { label } = Astro.props;
+---
+
+<span>
+  <span class="mb-1.5 block text-[0.688rem] text-t-com italic">// {label}</span><slot />
+</span>

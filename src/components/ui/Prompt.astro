@@ -1,0 +1,12 @@
+---
+// A shell prompt line: accent `$` followed by its command (slot).
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<div class:list={['flex items-baseline gap-2.5', className]}>
+  <span class="text-accent">$</span>
+  <slot />
+</div>

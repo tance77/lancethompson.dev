@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+
+@theme {
+    /* Surfaces */
+    --color-navy-900: #04101f;
+    --color-navy-800: #071a33;
+    --color-navy-700: #0b2545;
+    --color-navy-600: #103258;
+    --color-navy-500: #1b4068;
+
+    /* Semantic surface roles (navy theme) */
+    --color-bg: #071a33;
+    --color-bg-alt: #04101f;
+    --color-bg-panel: #0b2545;
+
+    /* Text */
+    --color-ink: #eaf1fb;
+    --color-ink-dim: #9db4d2;
+    --color-ink-faint: #5e789e;
+    --color-ink-dark: #0a1f3a;
+
+    /* Accents */
+    --color-accent: #ffc20e;
+    --color-accent-ink: #0a1f3a;
+    --color-bolt: #ffc20e;
+    --color-bolt-deep: #f2a900;
+    --color-powder: #2e9bd6;
+    --color-powder-soft: #6ec1ec;
+
+    /* Syntax-highlight palette (code-editor hero) */
+    --color-t-key: #6ec1ec;
+    --color-t-prop: #ffc20e;
+    --color-t-str: #8ed99c;
+    --color-t-type: #f0a868;
+    --color-t-var: #eaf1fb;
+    --color-t-punc: #5e789e;
+    --color-t-com: #5b769b;
+
+    /* Hairline border */
+    --color-hairline: rgba(141, 184, 232, 0.18);
+
+    /* Type */
+    --font-display: 'Archivo', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+    /* Caret blink */
+    --animate-blink: blink 1.05s steps(1) infinite;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        font-family: var(--font-display);
+        background: var(--color-bg);
+        color: var(--color-ink);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        line-height: 1.5;
+        overflow-x: hidden;
+    }
+    ::selection {
+        background: var(--color-accent);
+        color: var(--color-accent-ink);
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+@utility link-underline {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        height: 2px;
+        width: 0;
+        background: var(--color-accent);
+        transition: width 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    &:hover::after {
+        width: 100%;
+    }
+}
+
+@utility head-scrim {
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -28px -54px;
+        z-index: -1;
+        background: radial-gradient(
+            105% 100% at 2% 50%,
+            var(--color-bg) 0%,
+            color-mix(in srgb, var(--color-bg) 55%, transparent) 52%,
+            transparent 84%
+        );
+        pointer-events: none;
+    }
+}

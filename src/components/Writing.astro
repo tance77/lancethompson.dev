@@ -1,0 +1,25 @@
+---
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import Reveal from './ui/Reveal.astro';
+import SectionHead from './ui/SectionHead.astro';
+import FileRow from './ui/FileRow.astro';
+import PromptLink from './ui/PromptLink.astro';
+import Prompt from './ui/Prompt.astro';
+---
+
+<section id="blog" class="relative overflow-hidden py-27.5">
+  <div class="sec-glow sec-glow--left sec-glow--low" aria-hidden="true"></div>
+  <div class="relative z-1 mx-auto max-w-310 px-8">
+    <SectionHead eyebrow="writing" title="Notes from the build." sub="Occasional posts on the tools and trade-offs behind the work." />
+
+    <Prompt class="mb-7 font-mono text-sm text-ink-dim">
+      <span>ls ~/writing</span>
+    </Prompt>
+
+    <Reveal class="overflow-hidden rounded-[10px] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_70%,#000)] font-mono">
+      {data.posts.map((post) => <FileRow post={post} />)}
+    </Reveal>
+
+    <PromptLink href="/blog" class="mt-5.5">cd ~/writing</PromptLink>
+  </div>
+</section>

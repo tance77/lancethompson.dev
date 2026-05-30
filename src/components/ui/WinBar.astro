@@ -1,0 +1,14 @@
+---
+// macOS-style window title bar (traffic-light dots + name).
+import WindowDots from './WindowDots.astro';
+
+interface Props {
+  name: string;
+}
+const { name } = Astro.props;
+---
+
+<div class="flex h-[42px] items-center gap-3 border-b border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_60%,#000)] px-3.5">
+  <WindowDots />
+  <span class="font-mono text-xs tracking-[0.02em] text-ink-faint">{name}</span>
+</div>

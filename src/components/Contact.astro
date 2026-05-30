@@ -1,0 +1,38 @@
+---
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import Reveal from './ui/Reveal.astro';
+import WinBar from './ui/WinBar.astro';
+import Prompt from './ui/Prompt.astro';
+import SocialLink from './ui/SocialLink.astro';
+import EmailLink from './ui/EmailLink.astro';
+
+interface Props {
+  class?: string;
+  /** Section surface color. Defaults to the alt surface used on the home page. */
+  surface?: string;
+  /** Extra modifier classes for the accent glow (e.g. `sec-glow--low`). */
+  glow?: string;
+}
+const { class: className = '', surface = 'bg-bg-alt', glow = '' } = Astro.props;
+---
+
+<section id="contact" class:list={['relative flex flex-col justify-center overflow-hidden py-27.5', surface, className]}>
+  <div class:list={['sec-glow sec-glow--accent', glow]} aria-hidden="true"></div>
+  <div class="relative mx-auto max-w-310 px-8">
+    <Reveal class="mx-auto max-w-185 overflow-hidden rounded-[0.625rem] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_78%,#000)] shadow-[0_40px_90px_-50px_rgba(0,0,0,0.75)]">
+      <WinBar name="lance@dev: ~/contact — zsh" />
+      <div class="px-7.5 pt-7.5 pb-8.5 font-mono text-[0.938rem] leading-[1.95]">
+        <div class="text-t-str"># let's build something precise.</div>
+        <Prompt><span>./get-in-touch.sh</span></Prompt>
+        <div class="text-ink-dim">Open to front-end & full-stack work — freelance or full-time.</div>
+        <div class="text-ink-dim">Tell me what you're making.</div>
+        <EmailLink email={data.email} />
+        <div class="mt-1.5 flex flex-wrap gap-6.5">
+          <SocialLink label="github" url={data.links.github} />
+          <SocialLink label="linkedin" url={data.links.linkedin} />
+        </div>
+        <Prompt><span class="caret" aria-hidden="true"></span></Prompt>
+      </div>
+    </Reveal>
+  </div>
+</section>

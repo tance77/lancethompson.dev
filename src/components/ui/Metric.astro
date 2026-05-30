@@ -1,0 +1,13 @@
+---
+// An impact stat: big accent value over a muted label.
+import type { Metric } from '../../data/portfolio';
+interface Props {
+  metric: Metric;
+}
+const { metric } = Astro.props;
+---
+
+<div>
+  <span class="block font-display text-[1.75rem] font-extrabold tracking-[-0.02em] whitespace-nowrap text-accent">{metric.key}</span>
+  <span class="mt-1 block font-mono text-[0.688rem] tracking-[0.06em] text-ink-faint uppercase">{metric.value}</span>
+</div>
