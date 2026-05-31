@@ -5,7 +5,12 @@ import Footer from '../components/Footer.astro';
 import Prompt from '../components/ui/Prompt.astro';
 import { PORTFOLIO_DATA as data } from '../data/portfolio';
 
+// First person for the visible prose (matches the rest of the site's voice).
 const bio =
+  "I'm a full-stack web developer with a front-end heart. I lead front-end architecture and ship tooling end-to-end at MyOutDesk, building Vue.js apps backed by PHP services on AWS, plus native desktop tools in Rust and Tauri. I grew from intern to senior engineer there, picking up the full stack along the way.";
+
+// Third person for crawlers/LLMs (how entity data reads).
+const bioLd =
   'Lance Thompson is a full-stack web developer with a front-end heart. He leads front-end architecture and ships tooling end-to-end at MyOutDesk, building Vue.js apps backed by PHP services on AWS, plus native desktop tools in Rust and Tauri. He grew from intern to senior engineer there, picking up the full stack along the way.';
 
 const skillsLine = data.skills.map((g) => `${g.group}: ${g.items.join(', ')}`).join('; ');
@@ -17,7 +22,7 @@ const tenureStart = data.experience[data.experience.length - 1].span.split(' to 
 const summary: [string, string][] = [
   ['Name', data.name],
   ['Also Known As', 'Lance'],
-  ['Summary', bio],
+  ['Summary', bioLd],
   ['Occupation', current.role],
   ['Current Work', `${current.org} (since ${tenureStart})`],
   ['Location', data.location],
@@ -33,7 +38,7 @@ const personLd = {
   '@type': 'Person',
   name: data.name,
   alternateName: 'Lance',
-  description: bio,
+  description: bioLd,
   url: `https://${data.domain}`,
   jobTitle: current.role,
   worksFor: { '@type': 'Organization', name: current.org },
@@ -44,7 +49,7 @@ const personLd = {
 };
 ---
 
-<Base title="About" description={bio}>
+<Base title="About" description={bioLd}>
   <Nav />
 
   <main class="relative min-h-svh overflow-hidden pt-32.5 pb-27.5">
