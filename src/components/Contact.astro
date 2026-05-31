@@ -16,12 +16,12 @@ interface Props {
 const { class: className = '', surface = 'bg-bg-alt', glow = '' } = Astro.props;
 ---
 
-<section id="contact" class:list={['relative flex flex-col justify-center overflow-hidden py-27.5', surface, className]}>
+<section id="contact" class:list={['relative flex flex-col justify-center overflow-hidden py-16 md:py-27.5', surface, className]}>
   <div class:list={['sec-glow sec-glow--accent', glow]} aria-hidden="true"></div>
-  <div class="relative mx-auto max-w-310 px-8">
+  <div class="relative mx-auto max-w-310 px-4 sm:px-8">
     <Reveal class="mx-auto max-w-185 overflow-hidden rounded-[0.625rem] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_78%,#000)] shadow-[0_40px_90px_-50px_rgba(0,0,0,0.75)]">
       <WinBar name="lance@dev: ~/contact — zsh" />
-      <div class="px-7.5 pt-7.5 pb-8.5 font-mono text-[0.938rem] leading-[1.95]">
+      <div class="px-5 pt-6 pb-7 font-mono text-[0.875rem] leading-[1.85] sm:px-7.5 sm:pt-7.5 sm:pb-8.5 sm:text-[0.938rem] sm:leading-[1.95]">
         <div class="text-t-str"># let's build something precise.</div>
         <Prompt><span>./get-in-touch.sh</span></Prompt>
         <div class="text-ink-dim">Open to front-end & full-stack work — freelance or full-time.</div>

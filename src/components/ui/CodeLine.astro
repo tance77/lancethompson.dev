@@ -9,7 +9,7 @@ const { indent = false, class: className = '' } = Astro.props;
 
 <div
   class:list={[
-    'relative block pl-14.5 whitespace-pre-wrap before:absolute before:left-0 before:w-10 before:text-right before:text-[0.75rem] before:text-[color-mix(in_srgb,var(--color-ink-faint)_60%,transparent)] before:content-[counter(ln)] before:[counter-increment:ln]',
+    'relative block pl-9 whitespace-pre sm:whitespace-pre-wrap before:absolute before:left-0 before:w-6 before:text-right before:text-[0.75rem] before:text-[color-mix(in_srgb,var(--color-ink-faint)_60%,transparent)] before:content-[counter(ln)] before:[counter-increment:ln] sm:pl-14.5 sm:before:w-10',
     indent && '[&>span:first-child]:ml-5.5',
     className,
   ]}

@@ -24,7 +24,7 @@ const caps: [string, string, string[]][] = [
 ];
 ---
 
-<section class="hero relative flex min-h-svh items-center overflow-hidden pt-30 pb-20" id="top">
+<section class="hero relative flex min-h-svh items-center overflow-hidden pt-24 pb-14 md:pt-30 md:pb-20" id="top">
   <!--Top left color swatch-->
   <HeroGlow />
   <!--Bottom right color swatch-->
@@ -44,8 +44,8 @@ const caps: [string, string, string[]][] = [
       </p>
 
       <div class="hero-cta mt-7.5 flex flex-wrap gap-3.5">
-        <ButtonLink href="#work">view_work() <span>→</span></ButtonLink>
-        <ButtonLink href="#contact" variant="secondary">contact()</ButtonLink>
+        <ButtonLink href="#work" class="w-full justify-center sm:w-auto sm:justify-start">view_work() <span>→</span></ButtonLink>
+        <ButtonLink href="#contact" variant="secondary" class="w-full justify-center sm:w-auto sm:justify-start">contact()</ButtonLink>
       </div>
 
       <div class="hero-meta mt-10.5 flex flex-wrap gap-8.5 border-t border-hairline pt-6 font-mono text-[0.813rem] text-ink-dim">
@@ -56,7 +56,10 @@ const caps: [string, string, string[]][] = [
     </div>
 
     <!-- Code-editor panel: capabilities.ts <-> about.md -->
-    <div class="code-panel self-center overflow-hidden rounded-[0.625rem] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_78%,#000)] font-mono shadow-[0_30px_80px_-40px_rgba(0,0,0,0.7)] max-[900px]:self-stretch" data-code-panel>
+    <div
+      class="code-panel -mx-4 self-center overflow-hidden rounded-[0.625rem] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_78%,#000)] font-mono shadow-[0_30px_80px_-40px_rgba(0,0,0,0.7)] max-[900px]:self-stretch"
+      data-code-panel
+    >
       <div class="flex h-10.5 items-center gap-0.5 border-b border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_60%,#000)] px-3">
         <WindowDots class="mr-3.5" />
         <CodeTab tab="caps" active>capabilities.ts</CodeTab>
@@ -65,7 +68,7 @@ const caps: [string, string, string[]][] = [
         <span class="inline-block h-4 w-3 bg-accent opacity-85 [clip-path:polygon(58%_0,16%_54%,44%_54%,36%_100%,84%_40%,52%_40%)]"></span>
       </div>
 
-      <div class="overflow-x-auto py-4.5 pr-4.5 pl-0 text-[0.813rem] leading-[1.85] [counter-reset:ln]" data-view="caps">
+      <div class="overflow-x-auto py-4.5 pr-4.5 pl-0 text-[0.688rem] leading-[1.7] [counter-reset:ln] sm:text-[0.813rem] sm:leading-[1.85]" data-view="caps">
         <CodeLine><span class="text-t-com">// what I build with</span></CodeLine>
         <CodeLine>
           <span class="text-t-key">const</span>
@@ -83,7 +86,7 @@ const caps: [string, string, string[]][] = [
         <CodeLine><span class="text-t-punc">&#125;</span></CodeLine>
       </div>
 
-      <div class="overflow-x-auto py-4.5 pr-4.5 pl-0 text-[0.813rem] leading-[1.85] [counter-reset:ln]" data-view="about" hidden>
+      <div class="overflow-x-auto py-4.5 pr-4.5 pl-0 text-[0.688rem] leading-[1.7] [counter-reset:ln] sm:text-[0.813rem] sm:leading-[1.85]" data-view="about" hidden>
         <CodeLine><span class="text-t-com">&lt;!-- about.md --&gt;</span></CodeLine>
         <CodeLine>
           <span class="text-accent"># </span><span class="font-bold text-t-type">Lance Thompson</span>
@@ -99,7 +102,7 @@ const caps: [string, string, string[]][] = [
         <CodeLine><span class="text-accent">- </span><span class="text-ink-dim">products, not just mockups</span></CodeLine>
       </div>
 
-      <div class="flex items-center gap-4.5 border-t border-hairline px-4 py-2 text-[0.688rem] tracking-[0.04em] text-ink-faint">
+      <div class="hidden items-center gap-4.5 border-t border-hairline px-4 py-2 text-[0.688rem] tracking-[0.04em] text-ink-faint sm:flex">
         <span class="text-t-str" data-status-lang>● TypeScript</span>
         <span>UTF-8</span>
         <span>spaces: 2</span>
