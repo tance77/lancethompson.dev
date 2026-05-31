@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Prompt from '../components/ui/Prompt.astro';
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+
+const bio =
+  'Lance Thompson is a full-stack web developer with a front-end heart. He leads front-end architecture and ships tooling end-to-end at MyOutDesk, building Vue.js apps backed by PHP services on AWS, plus native desktop tools in Rust and Tauri. He grew from intern to senior engineer there, picking up the full stack along the way.';
+
+const skillsLine = data.skills.map((g) => `${g.group}: ${g.items.join(', ')}`).join('; ');
+const current = data.experience[0];
+// Oldest role at the current org = true tenure start (intern, 2016).
+const tenureStart = data.experience[data.experience.length - 1].span.split(' to ')[0];
+
+// Wiki-style infobox rows. Order mirrors a Wikipedia person summary.
+const summary: [string, string][] = [
+  ['Name', data.name],
+  ['Also Known As', 'Lance'],
+  ['Summary', bio],
+  ['Occupation', current.role],
+  ['Current Work', `${current.org} (since ${tenureStart})`],
+  ['Location', data.location],
+  ['Skills', skillsLine],
+  ['GitHub', data.links.github],
+  ['LinkedIn', data.links.linkedin],
+  ['Entity Home', data.domain],
+];
+
+// Structured data for crawlers / LLMs.
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: data.name,
+  alternateName: 'Lance',
+  description: bio,
+  url: `https://${data.domain}`,
+  jobTitle: current.role,
+  worksFor: { '@type': 'Organization', name: current.org },
+  address: { '@type': 'PostalAddress', addressLocality: data.location },
+  email: `mailto:${data.email}`,
+  knowsAbout: data.skills.flatMap((g) => g.items),
+  sameAs: [`https://${data.links.github}`, `https://${data.links.linkedin}`],
+};
+---
+
+<Base title="About" description={bio}>
+  <Nav />
+
+  <main class="relative min-h-svh overflow-hidden pt-32.5 pb-27.5">
+    <div class="sec-glow sec-glow--accent" aria-hidden="true"></div>
+    <div class="relative z-1 mx-auto max-w-310 px-8">
+      <span class="inline-flex items-center gap-2 font-mono text-[0.813rem] tracking-[0.06em] text-accent lowercase">
+        <span class="font-semibold tracking-normal">//</span>about
+      </span>
+      <h1 class="mt-4.5 mb-3.5 font-display text-[clamp(30px,4.4vw,54px)] leading-[1.02] font-extrabold tracking-[-0.02em] text-balance">
+        A full-stack dev with a front-end heart.
+      </h1>
+      <p class="mb-10 max-w-155 text-[1.063rem] text-pretty text-ink-dim">{bio}</p>
+
+      <Prompt class="mb-7 font-mono text-sm text-ink-dim">
+        <span>cat ~/about/summary.json</span>
+      </Prompt>
+
+      <details
+        open
+        class="overflow-hidden rounded-[10px] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_70%,#000)] font-mono"
+      >
+        <summary
+          class="flex cursor-pointer list-none items-center justify-between border-b border-hairline px-4 py-3 text-[0.813rem] tracking-[0.04em] text-t-str"
+        >
+          <span class="inline-flex items-center gap-2"><span class="text-accent">●</span> summary: for the robots</span>
+          <span class="text-ink-faint">[schema.org/Person]</span>
+        </summary>
+        <dl class="divide-y divide-hairline text-sm">
+          {
+            summary.map(([label, value]) => (
+              <div class="grid grid-cols-1 gap-1 px-4 py-3 sm:grid-cols-[10rem_1fr] sm:gap-4">
+                <dt class="text-t-prop">{label}</dt>
+                <dd class="text-pretty text-ink-dim">{value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </details>
+
+      <div class="mt-6.5 flex items-baseline gap-2.5 font-mono text-[0.844rem] text-ink-faint">
+        <span class="text-accent">#</span>
+        <span>machine-readable summary above; humans, the prose says it shorter.</span>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+
+  <script type="application/ld+json" set:html={JSON.stringify(personLd)} is:inline />
+</Base>
