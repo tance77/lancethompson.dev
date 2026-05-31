@@ -6,9 +6,22 @@ interface Props {
 }
 const { label, href } = Astro.props;
 const cta = label === 'contact';
+
+// Active when the current path matches this link. Normalize trailing slashes.
+const norm = (p: string) => '/' + p.replace(/^\/+|\/+$/g, '');
+const active = norm(Astro.url.pathname) === norm(href);
 ---
 
-<a href={href} class:list={['link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] transition-colors max-[820px]:w-full max-[820px]:py-3', cta ? 'text-accent hover:text-bolt-deep' : 'text-ink-dim hover:text-ink']}>
+<a
+  href={href}
+  aria-current={active ? 'page' : undefined}
+  class:list={[
+    'link-underline relative py-1 font-mono text-[0.813rem] tracking-[0.04em] transition-colors max-[820px]:w-full max-[820px]:py-3',
+    cta ? 'text-accent hover:text-bolt-deep' : 'text-ink-dim hover:text-ink',
+    active && !cta && 'text-ink',
+    active && 'after:w-full',
+  ]}
+>
   <span class="mr-px text-t-punc">./</span>
   {label}
 </a>
