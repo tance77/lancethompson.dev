@@ -1,16 +1,30 @@
 ---
-// Framed screenshot placeholder: window title bar + blueprint-stripe area.
+// Framed screenshot: window title bar + image, or blueprint-stripe placeholder when no shot exists.
+import { Image } from 'astro:assets';
 import WinBar from './WinBar.astro';
 interface Props {
   shot: string;
   name: string;
 }
 const { shot, name } = Astro.props;
+
+// Eagerly resolve every image in src/assets so a shot filename maps to an optimizable asset.
+const assets = import.meta.glob<{ default: ImageMetadata }>('../../assets/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+});
+const match = Object.entries(assets).find(([path]) => path.endsWith(`/${shot}`));
+const image = match?.[1].default;
 ---
 
 <div class="block overflow-hidden rounded-[10px] border border-hairline shadow-[0_30px_80px_-52px_rgba(0,0,0,0.7)] transition-colors group-hover:border-[color-mix(in_srgb,var(--color-accent)_38%,var(--color-hairline))]">
   <WinBar name={name} />
-  <div class="work-screen flex items-center justify-center">
-    <span class="px-4.5 py-2.5 text-center font-mono text-xs tracking-[0.06em] text-ink-faint">COMING SOON</span>
-  </div>
+  {
+    image ? (
+      <Image src={image} alt={name} class="work-screen block w-full object-cover" />
+    ) : (
+      <div class="work-screen flex items-center justify-center">
+        <span class="px-4.5 py-2.5 text-center font-mono text-xs tracking-[0.06em] text-ink-faint">COMING SOON</span>
+      </div>
+    )
+  }
 </div>
