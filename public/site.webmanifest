@@ -1,6 +1,6 @@
 {
-  "name": "LanceThompson.dev",
-  "short_name": "LanceThompson.dev",
+  "name": "MyWebSite",
+  "short_name": "MySite",
   "icons": [
     {
       "src": "/public/web-app-manifest-192x192.png",
