@@ -1,0 +1,43 @@
+---
+// Home About band: portrait + first-person bio + quick facts. Real content only.
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import Reveal from './ui/Reveal.astro';
+import WinBar from './ui/WinBar.astro';
+import MetaItem from './ui/MetaItem.astro';
+import Tag from './ui/Tag.astro';
+
+const current = data.experience[0];
+// Oldest role at the current org = true tenure start (intern, 2016).
+const tenureStart = data.experience[data.experience.length - 1].span.split(' to ')[0];
+const focus = data.skills.flatMap((g) => g.items).slice(0, 6);
+---
+
+<section id="about" class="relative overflow-hidden py-16 md:py-27.5">
+  <div class="sec-glow sec-glow--left sec-glow--low" aria-hidden="true"></div>
+  <div class="relative z-1 mx-auto grid max-w-310 grid-cols-[0.85fr_1.15fr] items-center gap-12 px-8 max-[820px]:grid-cols-1 max-[820px]:gap-9">
+    <Reveal class="overflow-hidden rounded-[10px] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_70%,#000)] shadow-[0_30px_80px_-52px_rgba(0,0,0,0.7)] max-[820px]:max-w-95">
+      <WinBar name="~/lance.png" />
+      <img src="/lance.png" alt={data.name} width="640" height="640" loading="lazy" decoding="async" class="block aspect-square w-full object-cover" />
+    </Reveal>
+
+    <Reveal delay={80}>
+      <span class="inline-flex items-center gap-2 font-mono text-[0.813rem] tracking-[0.06em] text-accent lowercase">
+        <span class="font-semibold tracking-normal">//</span>about
+      </span>
+      <h2 class="mt-4.5 font-display text-[clamp(28px,4vw,48px)] leading-[1.04] font-extrabold tracking-[-0.02em] text-balance">
+        A full-stack dev with a front-end heart.
+      </h2>
+      <p class="mt-5 max-w-155 text-[1.063rem] text-pretty text-ink-dim">{data.bio}</p>
+
+      <div class="mt-8 flex flex-wrap gap-8.5 border-t border-hairline pt-6 font-mono text-[0.813rem] text-ink-dim">
+        <MetaItem label="current">{current.role}, {current.org}</MetaItem>
+        <MetaItem label="since">{tenureStart}</MetaItem>
+        <MetaItem label="location">{data.location}</MetaItem>
+      </div>
+
+      <div class="mt-7 flex flex-wrap gap-2.5">
+        {focus.map((item) => <Tag>{item}</Tag>)}
+      </div>
+    </Reveal>
+  </div>
+</section>

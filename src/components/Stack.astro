@@ -1,0 +1,29 @@
+---
+// Full skills grid grouped by domain. Real portfolio.skills data.
+import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import SectionHead from './ui/SectionHead.astro';
+import Reveal from './ui/Reveal.astro';
+import Tag from './ui/Tag.astro';
+---
+
+<section id="stack" class="relative overflow-hidden py-16 md:py-27.5">
+  <div class="sec-glow sec-glow--low" aria-hidden="true"></div>
+  <div class="relative z-1 mx-auto max-w-310 px-8">
+    <SectionHead eyebrow="stack" title="What I build with." sub="Front-end first, but comfortable across the back end, cloud, and native desktop." />
+
+    <Reveal class="grid grid-cols-3 gap-px overflow-hidden rounded-[10px] border border-hairline bg-hairline max-[820px]:grid-cols-2 max-[560px]:grid-cols-1">
+      {
+        data.skills.map((group) => (
+          <div class="bg-[color-mix(in_srgb,var(--color-navy-900)_70%,#000)] p-6">
+            <span class="block font-mono text-[0.781rem] tracking-[0.04em] text-t-prop">{group.group}</span>
+            <div class="mt-3.5 flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <Tag>{item}</Tag>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </Reveal>
+  </div>
+</section>

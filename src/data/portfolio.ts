@@ -37,6 +37,10 @@ export interface Post {
 export interface Portfolio {
   name: string;
   tagline: string;
+  /** First-person bio used on the home About band and the About page. */
+  bio: string;
+  /** Third-person bio for crawlers/LLMs (schema.org Person description). */
+  bioLd: string;
   location: string;
   email: string;
   domain: string;
@@ -50,6 +54,9 @@ export interface Portfolio {
 export const PORTFOLIO_DATA: Portfolio = {
   name: 'Lance Thompson',
   tagline: 'Full-stack web developer with a front-end heart.',
+  bio: "I'm a full-stack web developer with a front-end heart. I lead front-end architecture and ship tooling end-to-end at MyOutDesk, building Vue.js apps backed by PHP services on AWS, plus native desktop tools in Rust and Tauri. I grew from intern to senior engineer there, picking up the full stack along the way.",
+  bioLd:
+    'Lance Thompson is a full-stack web developer with a front-end heart. He leads front-end architecture and ships tooling end-to-end at MyOutDesk, building Vue.js apps backed by PHP services on AWS, plus native desktop tools in Rust and Tauri. He grew from intern to senior engineer there, picking up the full stack along the way.',
   location: 'Sacramento, CA',
   email: 'hello@lancethompson.dev',
   domain: 'lancethompson.dev',
