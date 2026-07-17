@@ -7,9 +7,10 @@ interface Props {
 const { label, href } = Astro.props;
 const cta = label === 'contact';
 
-// Active when the current path matches this link. Normalize trailing slashes.
+// Active when the current path matches this link or lives under it (e.g. /blog/post → blog).
 const norm = (p: string) => '/' + p.replace(/^\/+|\/+$/g, '');
-const active = norm(Astro.url.pathname) === norm(href);
+const path = norm(Astro.url.pathname);
+const active = href === '/' ? path === '/' : (path + '/').startsWith(norm(href) + '/');
 ---
 
 <a
