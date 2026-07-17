@@ -1,0 +1,149 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Prompt from '../../components/ui/Prompt.astro';
+import PromptLink from '../../components/ui/PromptLink.astro';
+import { postDateLong, readTime } from '../../data/blog';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Base title={post.data.title} description={post.data.description}>
+  <Nav />
+
+  <main class="relative min-h-svh overflow-hidden pt-32.5 pb-27.5">
+    <div class="sec-glow sec-glow--accent" aria-hidden="true"></div>
+    <article class="relative z-1 mx-auto max-w-190 px-8">
+      <Prompt class="mb-7 font-mono text-sm text-ink-dim">
+        <span>cat ~/writing/{post.id}.md</span>
+      </Prompt>
+
+      <h1 class="mb-4 font-display text-[clamp(28px,3.8vw,46px)] leading-[1.06] font-extrabold tracking-[-0.02em] text-balance">{post.data.title}</h1>
+
+      <div class="mb-3.5 flex flex-wrap items-baseline gap-x-4 gap-y-1 font-mono text-[0.813rem] text-ink-faint">
+        <span>{postDateLong(post.data.date)}</span>
+        <span>·</span>
+        <span>{readTime(post)} read</span>
+        {post.data.tags.length > 0 && <span>·</span>}
+        {post.data.tags.map((tag) => <span class="text-accent">#{tag}</span>)}
+      </div>
+
+      <div class="prose-post mt-10">
+        <Content />
+      </div>
+
+      <div class="mt-14 border-t border-hairline pt-8">
+        <PromptLink href="/blog">cd ~/writing</PromptLink>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Base>
+
+<style is:global>
+  /* Long-form styling for rendered markdown, matching the site's terminal aesthetic. */
+  .prose-post {
+    color: var(--color-ink-dim);
+    font-size: 1.063rem;
+    line-height: 1.75;
+  }
+  .prose-post h2,
+  .prose-post h3 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 2.25em 0 0.75em;
+  }
+  .prose-post h2 {
+    font-size: 1.5rem;
+  }
+  .prose-post h2::before {
+    content: '## ';
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+  }
+  .prose-post h3 {
+    font-size: 1.188rem;
+  }
+  .prose-post p {
+    margin: 0 0 1.25em;
+  }
+  .prose-post a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-underline-offset: 3px;
+    transition: color 0.15s;
+  }
+  .prose-post a:hover {
+    color: var(--color-accent);
+  }
+  .prose-post strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .prose-post ul,
+  .prose-post ol {
+    margin: 0 0 1.25em;
+    padding-left: 1.4em;
+  }
+  .prose-post li {
+    margin-bottom: 0.4em;
+  }
+  .prose-post ul li::marker {
+    color: var(--color-accent);
+  }
+  .prose-post code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    color: var(--color-ink);
+    background: color-mix(in srgb, var(--color-navy-900) 70%, #000);
+    border: 1px solid var(--color-hairline);
+    border-radius: 5px;
+    padding: 0.15em 0.4em;
+  }
+  .prose-post pre {
+    margin: 0 0 1.5em;
+    padding: 1.1em 1.3em;
+    border: 1px solid var(--color-hairline);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--color-navy-900) 70%, #000) !important;
+    overflow-x: auto;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+  .prose-post pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: inherit;
+  }
+  .prose-post blockquote {
+    margin: 0 0 1.25em;
+    padding: 0.2em 0 0.2em 1.2em;
+    border-left: 2px solid var(--color-accent);
+    color: var(--color-ink-faint);
+  }
+  .prose-post hr {
+    border: none;
+    border-top: 1px solid var(--color-hairline);
+    margin: 2.5em 0;
+  }
+  .prose-post img {
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--color-hairline);
+  }
+</style>

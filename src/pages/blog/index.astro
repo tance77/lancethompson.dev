@@ -1,10 +1,12 @@
 ---
-import Base from '../layouts/Base.astro';
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import FileRow from '../components/ui/FileRow.astro';
-import Prompt from '../components/ui/Prompt.astro';
-import { PORTFOLIO_DATA as data } from '../data/portfolio';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import FileRow from '../../components/ui/FileRow.astro';
+import Prompt from '../../components/ui/Prompt.astro';
+import { postDate, publishedPosts, readTime } from '../../data/blog';
+
+const posts = await publishedPosts();
 ---
 
 <Base title="Writing" description="Notes from the build by Lance Thompson.">
@@ -24,12 +26,12 @@ import { PORTFOLIO_DATA as data } from '../data/portfolio';
       </Prompt>
 
       <div class="overflow-hidden rounded-[10px] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_70%,#000)] font-mono">
-        {data.posts.map((post) => <FileRow post={post} href="#" />)}
+        {posts.map((post) => <FileRow href={`/blog/${post.id}`} name={post.id} date={postDate(post.data.date)} read={readTime(post)} />)}
       </div>
 
       <div class="mt-6.5 flex items-baseline gap-2.5 font-mono text-[0.844rem] text-ink-faint">
         <span class="text-accent">#</span>
-        <span>more posts coming soon, this is where the blog will live.</span>
+        <span>{posts.length} {posts.length === 1 ? 'post' : 'posts'} and counting.</span>
       </div>
     </div>
   </main>

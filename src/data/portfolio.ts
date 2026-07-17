@@ -28,12 +28,6 @@ export interface Role {
   tags: string[];
 }
 
-export interface Post {
-  title: string;
-  date: string;
-  read: string;
-}
-
 export interface Portfolio {
   name: string;
   tagline: string;
@@ -48,7 +42,6 @@ export interface Portfolio {
   skills: SkillGroup[];
   projects: Project[];
   experience: Role[];
-  posts: Post[];
 }
 
 export const PORTFOLIO_DATA: Portfolio = {
@@ -142,24 +135,6 @@ export const PORTFOLIO_DATA: Portfolio = {
       org: 'MyOutDesk',
       blurb: 'Started as an intern, turning designs into fast, accessible interfaces and learning the stack behind them.',
       tags: ['HTML', 'CSS', 'JavaScript'],
-    },
-  ],
-
-  posts: [
-    {
-      title: 'Porting our Electron app to Tauri',
-      date: '2026 · 04',
-      read: '8 min',
-    },
-    {
-      title: 'Building a cross-platform Salesforce Data Loader',
-      date: '2026 · 02',
-      read: '11 min',
-    },
-    {
-      title: 'Terraform patterns Aurora',
-      date: '2025 · 11',
-      read: '9 min',
     },
   ],
 };

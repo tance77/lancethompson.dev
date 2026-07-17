@@ -1,10 +1,12 @@
 ---
-import { PORTFOLIO_DATA as data } from '../data/portfolio';
 import Reveal from './ui/Reveal.astro';
 import SectionHead from './ui/SectionHead.astro';
 import FileRow from './ui/FileRow.astro';
 import PromptLink from './ui/PromptLink.astro';
 import Prompt from './ui/Prompt.astro';
+import { postDate, publishedPosts, readTime } from '../data/blog';
+
+const posts = (await publishedPosts()).slice(0, 3);
 ---
 
 <section id="blog" class="relative overflow-hidden py-16 md:py-27.5">
@@ -17,7 +19,7 @@ import Prompt from './ui/Prompt.astro';
     </Prompt>
 
     <Reveal class="overflow-hidden rounded-[10px] border border-hairline bg-[color-mix(in_srgb,var(--color-navy-900)_70%,#000)] font-mono">
-      {data.posts.map((post) => <FileRow post={post} />)}
+      {posts.map((post) => <FileRow href={`/blog/${post.id}`} name={post.id} date={postDate(post.data.date)} read={readTime(post)} />)}
     </Reveal>
 
     <PromptLink href="/blog" class="mt-5.5">cd ~/writing</PromptLink>

@@ -1,22 +1,13 @@
 ---
 // A blog post rendered as an `ls -l` file row: perms, filename, date, read time.
-import type { Post } from '../../data/portfolio';
-
 interface Props {
-  post: Post;
-  href?: string;
+  href: string;
+  /** Post slug, rendered as "{name}.md". */
+  name: string;
+  date: string;
+  read: string;
 }
-const { post, href = '/blog' } = Astro.props;
-
-// Turn a post title into a fake ".md" filename.
-function slug(t: string): string {
-  return t
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
-    .slice(0, 26)
-    .replace(/-+$/, '');
-}
+const { href, name, date, read } = Astro.props;
 ---
 
 <a
@@ -24,8 +15,8 @@ function slug(t: string): string {
   class="group grid grid-cols-[118px_1fr_auto_auto_18px] items-center gap-5 border-b border-hairline px-5.5 py-4 text-[0.844rem] text-ink-dim transition-colors last:border-b-0 hover:bg-[color-mix(in_srgb,var(--color-bg-panel)_55%,transparent)] max-[720px]:grid-cols-[1fr_auto]"
 >
   <span class="text-ink-faint max-[720px]:hidden">-rw-r--r--</span>
-  <span class="text-ink group-hover:text-accent">{slug(post.title)}.md</span>
-  <span class="text-ink-faint max-[720px]:hidden">{post.date}</span>
-  <span class="text-ink-faint">{post.read}</span>
+  <span class="text-ink group-hover:text-accent">{name}.md</span>
+  <span class="text-ink-faint max-[720px]:hidden">{date}</span>
+  <span class="text-ink-faint">{read}</span>
   <span class="-translate-x-1.25 text-accent opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100">→</span>
 </a>
