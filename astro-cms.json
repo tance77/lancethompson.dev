@@ -1,4 +1,21 @@
 {
   "url": "https://lancethompson.dev",
-  "collections": {}
+  "collections": {
+    "blog": {
+      "label": "Blog",
+      "content": "src/content/blog",
+      "sidebar": {
+        "groupBy": "year",
+        "pinDrafts": true,
+        "sortBy": "date"
+      },
+      "fields": {
+        "title": { "type": "string", "required": true },
+        "description": { "type": "string", "required": true },
+        "date": { "type": "date", "required": true },
+        "tags": { "type": "array", "default": [] },
+        "draft": { "type": "boolean", "default": false }
+      }
+    }
+  }
 }
